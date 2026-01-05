@@ -67,7 +67,7 @@
 <div class="hero-section">
     <div class="hero-overlay"></div>
     
-    <div class="booking-widget">
+    <div class="booking-widget" id="booking-area">
         <form action="{{ route('booking.store') }}" method="POST"> <div class="row align-items-center">
                 <div class="col-md-5 mb-3 mb-md-0 border-end">
                     <label class="text-uppercase text-muted small fw-bold mb-1">
