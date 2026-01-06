@@ -40,8 +40,6 @@ Route::middleware(['auth', 'role:user'])->group(function () {
     Route::get('/home', [UserController::class, 'index'])->name('home');
     Route::post('/booking', [UserController::class, 'storeBooking'])->name('booking.store');
     Route::get('/booking', [UserController::class, 'bookingPage'])->name('booking.index');
-    
-    // 2. Route untuk MENYIMPAN data booking (POST)
     Route::post('/booking', [UserController::class, 'storeBooking'])->name('booking.store');
     Route::get('/riwayat', [UserController::class, 'history'])->name('booking.history');
 });

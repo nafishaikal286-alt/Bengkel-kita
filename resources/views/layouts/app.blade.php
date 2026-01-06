@@ -102,12 +102,7 @@
                                         <i class="bi bi-speedometer2"></i> Dashboard
                                     </a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-people"></i> Pelanggan</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-tools"></i> Layanan</a>
-                                </li>
+                    
                                 <li class="nav-item">
                                     <a class="nav-link" href="{{ route('admin.hero.edit') }}">
                                         <i class="bi bi-palette"></i> Tampilan Web
