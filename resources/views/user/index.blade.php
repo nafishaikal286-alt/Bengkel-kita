@@ -2,135 +2,109 @@
 
 @section('content')
 <style>
-    /* Hero Section dengan Gambar Background */
+    /* Hero Section Dinamis */
     .hero-section {
-        background: url('https://images.unsplash.com/photo-1599256621730-d3269650226e?q=80&w=2070&auto=format&fit=crop') no-repeat center center;
+        /* Mengambil URL gambar dari variabel data yang dikirim Controller */
+        background-image: url('{{ $data['hero_image'] }}');
+        background-repeat: no-repeat;
+        background-position: center center;
         background-size: cover;
-        height: 500px; /* Tinggi banner di desktop */
+        
+        /* Tinggi banner lebih besar agar lebih dramatis */
+        height: 70vh; 
+        min-height: 500px;
+        
         position: relative;
         display: flex;
         align-items: center;
         justify-content: center;
+        text-align: center;
+        color: white;
     }
 
-    /* Overlay gelap agar teks/kotak lebih kontras */
+    /* Overlay yang lebih gelap agar teks putih terbaca jelas */
     .hero-overlay {
         position: absolute;
         top: 0; left: 0; width: 100%; height: 100%;
-        background: rgba(0, 0, 0, 0.4);
+        background: rgba(0, 0, 0, 0.6); /* Tingkat kegelapan 60% */
     }
 
-    /* Kotak Pencarian (Location & Date) */
-    .booking-widget {
+    /* Container Teks Selogan di Tengah */
+    .hero-content {
         position: relative;
         z-index: 2;
-        background: white;
-        padding: 30px;
-        border-radius: 15px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         max-width: 800px;
-        width: 90%;
+        padding: 20px;
     }
 
-    /* Teks Intro yang elegan (Serif) */
-    .intro-text {
-        font-family: 'Georgia', serif; /* Meniru font di gambar */
-        color: #555;
-        line-height: 1.8;
-        font-size: 1.1rem;
+    /* Gaya Judul Selogan Utama */
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
     }
 
-    /* Tombol Learn More (Warna Slate Grey/Biru Pucat sesuai gambar) */
-    .btn-slate {
-        background-color: #8391a1; /* Warna mirip gambar */
-        color: white;
-        border: none;
-        padding: 10px 25px;
-        text-transform: uppercase;
-        font-size: 0.8rem;
-        letter-spacing: 1px;
-        font-weight: 600;
-        transition: 0.3s;
-    }
-    .btn-slate:hover {
-        background-color: #6c7a89;
-        color: white;
-    }
-
-    /* Card Styling */
-    .promo-card img {
-        height: 200px;
-        object-fit: cover;
+    /* Gaya Sub-text Selogan */
+    .hero-text {
+        font-size: 1.25rem;
+        font-weight: 400;
+        opacity: 0.9;
+        line-height: 1.6;
+        font-family: 'Georgia', serif; /* Sentuhan elegan */
     }
 </style>
 
 <div class="hero-section">
     <div class="hero-overlay"></div>
     
-    <div class="booking-widget" id="booking-area">
-        <form action="{{ route('booking.store') }}" method="POST"> <div class="row align-items-center">
-                <div class="col-md-5 mb-3 mb-md-0 border-end">
-                    <label class="text-uppercase text-muted small fw-bold mb-1">
-                        <i class="bi bi-geo-alt-fill text-primary"></i> Location
-                    </label>
-                    <select class="form-select border-0 fw-bold shadow-none" style="padding-left:0;">
-                        <option>Sleman Sembada</option>
-                        <option>Jakarta Selatan</option>
-                        <option>Bandung Kota</option>
-                    </select>
-                </div>
+    <div class="hero-content animate__animated animate__fadeInUp">
+        <h1 class="hero-title">
+            {{ $data['slogan_title'] }}
+        </h1>
+        
+        <p class="hero-text">
+            {{ $data['slogan_text'] }}
+        </p>
 
-                <div class="col-md-4 mb-3 mb-md-0 border-end">
-                    <label class="text-uppercase text-muted small fw-bold mb-1">
-                        <i class="bi bi-calendar-event text-primary"></i> Date
-                    </label>
-                    <input type="date" class="form-control border-0 fw-bold shadow-none" style="padding-left:0;" value="2025-07-12">
-                </div>
-
-                <div class="col-md-3 text-center">
-                    <button type="submit" class="btn btn-dark w-100 py-2">
-                        Booking Now
-                    </button>
-                </div>
-            </div>
-        </form>
+        <a href="{{ route('booking.index') }}" class="btn btn-primary btn-lg mt-4 rounded-pill px-5 fw-bold">
+            <i class="bi bi-calendar-plus me-2"></i> Booking Sekarang
+        </a>
     </div>
 </div>
 
-<div class="container my-5">
-    <div class="row justify-content-center text-center mb-5">
-        <div class="col-lg-8">
-            <h2 class="mb-4 fw-bold">Selamat Datang di BengkelKita</h2>
-            <p class="intro-text">
-                Merawat motor kini jadi lebih mudah bersama BengkelKita! 
-                Tinggal booking, pilih jadwal, datang — motor langsung ditangani 
-                mekanik profesional tanpa harus menunggu lama. Praktis, cepat, terpercaya!
-            </p>
+<div class="container my-5 py-4">
+    <div class="row mb-4 align-items-center">
+        <div class="col-md-8">
+            <h3 class="fw-bold text-dark">{{ $news_setting->title }}</h3>
+            <p class="text-muted">{{ $news_setting->description }}</p>
         </div>
     </div>
 
     <div class="row g-4">
+        @foreach($news_items as $item)
         <div class="col-md-6 col-lg-6">
             <div class="card h-100 shadow-sm border-0 overflow-hidden promo-card">
-                <img src="https://images.unsplash.com/photo-1625043484555-47841a750399?q=80&w=2070&auto=format&fit=crop" class="card-img-top" alt="Bengkel Bersih">
-                <div class="card-body p-4">
-                    <h5 class="card-title fw-bold mb-3">10 Nominasi Bengkel Terbaik di Indonesia</h5>
-                    <p class="card-text text-muted">Kami masuk dalam jajaran bengkel dengan pelayanan terbaik dan peralatan terlengkap tahun ini.</p>
-                    <a href="#" class="btn btn-slate mt-2">Learn More</a>
-                </div>
-            </div>
-        </div>
 
-        <div class="col-md-6 col-lg-6">
-            <div class="card h-100 shadow-sm border-0 overflow-hidden promo-card">
-                <img src="https://images.unsplash.com/photo-1487800940032-1cf21118ccde?q=80&w=2069&auto=format&fit=crop" class="card-img-top" alt="Service Motor">
+                @php
+                    $imgUrl = str_contains($item->image_path, 'http') 
+                              ? $item->image_path 
+                              : asset('storage/' . $item->image_path);
+                @endphp
+
+                <img src="{{ $imgUrl }}" class="card-img-top" alt="{{ $item->title }}" style="height: 250px; object-fit: cover;">
+
                 <div class="card-body p-4">
-                    <h5 class="card-title fw-bold mb-3">Layanan Gratis Service Akhir Tahun</h5>
-                    <p class="card-text text-muted">Dapatkan pengecekan ringan gratis untuk persiapan liburan akhir tahun Anda. Khusus member.</p>
-                    <a href="#" class="btn btn-slate mt-2">Learn More</a>
+                    <span class="badge bg-{{ $item->badge_color }} mb-2">{{ $item->badge_text }}</span>
+                    <h5 class="card-title fw-bold mb-3">{{ $item->title }}</h5>
+                    <p class="card-text text-muted">{{ Str::limit($item->content, 100) }}</p>
+                    <a href="#" class="btn btn-outline-primary btn-sm mt-2 rounded-pill px-4">Lihat Detail</a>
                 </div>
             </div>
         </div>
+        @endforeach
     </div>
 </div>
+
 @endsection

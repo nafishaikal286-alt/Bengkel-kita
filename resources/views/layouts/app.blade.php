@@ -108,19 +108,34 @@
                                 <li class="nav-item">
                                     <a class="nav-link" href="#"><i class="bi bi-tools"></i> Layanan</a>
                                 </li>
-                            @else
+                                <li class="nav-item">
+                                    <a class="nav-link" href="{{ route('admin.hero.edit') }}">
+                                        <i class="bi bi-palette"></i> Tampilan Web
+                                    </a>
+
+                                </li>
+
+                                <li class="nav-item">
+                                        <a class="nav-link" href="{{ route('admin.news.index') }}">
+                                <i class="bi bi-newspaper"></i> Kelola Berita
+                            </a>
+                        </li>
+                                                    @else
                                 <li class="nav-item">
                                     <a class="nav-link {{ request()->routeIs('home') ? 'active' : '' }}" href="{{ route('home') }}">
                                         <i class="bi bi-house-door"></i> Home
                                     </a>
                                 </li>
-                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('home') }}#booking-area">
+                                <li class="nav-item">
+                                    <a class="nav-link {{ request()->routeIs('booking.index') ? 'active' : '' }}" href="{{ route('booking.index') }}">
                                         <i class="bi bi-calendar-plus"></i> Booking Service
                                     </a>
                                 </li>
+                                
                                 <li class="nav-item">
-                                    <a class="nav-link" href="#"><i class="bi bi-calendar-check"></i> Riwayat Booking</a>
+                                    <a class="nav-link {{ request()->routeIs('booking.history') ? 'active' : '' }}" href="{{ route('booking.history') }}">
+                                        <i class="bi bi-clock-history"></i> Riwayat Booking
+                                    </a>
                                 </li>
                             @endif
                         @endauth

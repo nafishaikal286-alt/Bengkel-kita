@@ -40,21 +40,34 @@ class DatabaseSeeder extends Seeder
         // Service::create(['name' => 'Ganti Oli', 'price' => 75000]);
 
         // Data Default Tampilan
-    \App\Models\HeroSetting::create([
-    'hero_image' => 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2072&auto=format&fit=crop',
-    'slogan_title' => 'Bengkel Profesional',
-    'slogan_text' => 'Solusi terbaik untuk perawatan kendaraan Anda.'
-]);
+        //     \App\Models\HeroSetting::create([
+        //     'hero_image' => 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2072&auto=format&fit=crop',
+        //     'slogan_title' => 'Bengkel Profesional',
+        //     'slogan_text' => 'Solusi terbaik untuk perawatan kendaraan Anda.'
+        // ]);
 
 
 
-        // Data Default Tampilan
-        HeroSetting::create([
-        'hero_image' => 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2072&auto=format&fit=crop',
-        'slogan_title' => 'Bengkel Profesional',
-        'slogan_text' => 'Solusi terbaik untuk perawatan kendaraan Anda.'
-]);
+        //         // Data Default Tampilan
+        //         HeroSetting::create([
+        //         'hero_image' => 'https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=2072&auto=format&fit=crop',
+        //         'slogan_title' => 'Bengkel Profesional',
+        //         'slogan_text' => 'Solusi terbaik untuk perawatan kendaraan Anda.'
+        // ]);
 
+        // Settingan Judul Berita
+        \App\Models\NewsSetting::create([
+            'title' => 'Berita & Penawaran Spesial',
+            'description' => 'Dapatkan update terbaru seputar promo bengkel kami.'
+        ]);
 
+        // Contoh Item Berita 1
+        \App\Models\NewsItem::create([
+            'image_path' => 'https://images.unsplash.com/photo-1625043484555-47841a750399?q=80&w=2070',
+            'badge_text' => 'Terbaru',
+            'badge_color' => 'success',
+            'title' => 'Bengkel Terbaik 2025',
+            'content' => 'Kami mendapatkan penghargaan pelayanan terbaik tahun ini.'
+        ]);
     }
 }
